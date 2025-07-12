@@ -1,7 +1,7 @@
 const Question = require('../models/questions.models')
 
-
 exports.getQuestions = async (req, res) => {
+    
     try {
         const questions = await Question.find().populate('author')
         res.status(200).json(questions)
