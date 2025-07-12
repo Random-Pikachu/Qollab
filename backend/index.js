@@ -3,6 +3,7 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 const Question = require('./models/questions.models')
 const connectDb = require('./db/connectDb')
+const questionRoutes = require('./routes/question.routes')
 const app = express()
 
 app.use(cors())
@@ -10,6 +11,8 @@ app.use(express.json())
 dotenv.config()
 
 connectDb()
+
+app.use('/api/questions', questionRoutes)
 
 app.get('/', (req, res) => {
     res.send('Hello World')
