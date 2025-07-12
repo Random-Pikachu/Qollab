@@ -1,32 +1,27 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport');
-require('dotenv').config();
+const express = require('express')
+const cors = require('cors')
+const dotenv = require('dotenv')
+const Question = require('./models/questions.models')
+const connectDb = require('./db/connectDb')
+const app = express()
 
-require('./config/passport')(passport); 
+app.use(cors())
+app.use(express.json())
+dotenv.config()
 
-const app = express();
-const authRoutes = require('./routes/auth');
+connectDb()
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(session({
-  secret: 'secretKey',
-  resave: false,
-  saveUninitialized: false,
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+app.get('/', (req, res) => {
+    res.send('Hello World')
+})
 
-// Routes
-app.use('/auth', authRoutes);
+const PORT = process.env.PORT || 4600
 
-// MongoDB Connection
-mongoose.connect(process.env.DB_URL)
-.then(() => console.log('✅ MongoDB Connected'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
-});
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
+    console.log(`http://localhost:${PORT}`)
+})
+
+
+
