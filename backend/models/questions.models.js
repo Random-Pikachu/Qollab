@@ -8,7 +8,7 @@ const answerSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'UserProfileDetails', 
+        ref: 'User', 
         required: true 
     },
     createdAt:{
@@ -57,7 +57,7 @@ const questionSchema = new mongoose.Schema({
     },
     author:{
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'UserProfileDetails', 
+        ref: 'User', 
         required: true 
     }
 })
