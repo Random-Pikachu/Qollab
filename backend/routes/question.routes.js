@@ -4,5 +4,4 @@ const router = express.Router()
 
 router.get('/', getQuestions)
 router.post('/', postQuestions)
-
 module.exports = router
