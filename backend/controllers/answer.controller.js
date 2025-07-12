@@ -29,7 +29,7 @@ exports.postAnswer = async (req, res) => {
     }
 
     // Find user by username
-    const user = await User.findOne({ username: author });
+    const user = await User.findOne({ _id: author });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }

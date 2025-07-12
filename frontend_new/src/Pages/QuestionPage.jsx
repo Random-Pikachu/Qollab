@@ -4,6 +4,8 @@ import api from '../connection'
 import QuestionCard from '../components/QuestionCard'
 import AnswerCard from '../components/AnswerCard'
 import SideBar from '../components/SideBar'
+import PostAnswer from '../components/PostAnswer'
+
 const QuestionPage = () => {
     const {id} = useParams()
     const [question, setQuestion] = useState(null)
@@ -25,6 +27,7 @@ const QuestionPage = () => {
             ) : (
                 <div>Loading...</div>
             )}
+            <PostAnswer />
             {answers.map((answer) => (
                 <AnswerCard answer={answer} />
             ))}

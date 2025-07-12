@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa'
-
+import { marked } from 'marked'
+const isHTML = (str) => /<[^>]+>/.test(str);
 const AnswerCard = ({ answer }) => {
   return (
     <div
@@ -25,7 +26,11 @@ const AnswerCard = ({ answer }) => {
           </span>
         </div>
         <div className="text-gray-900 text-base">
-          {answer.description}
+        {isHTML(answer.description) ? (
+          <div className='text-gray-600' dangerouslySetInnerHTML={{ __html: answer.description }} />
+        ) : (
+          <div className='text-gray-600' dangerouslySetInnerHTML={{ __html: marked.parse(answer.description || '') }} />
+        )}
         </div>
       </div>
     </div>
