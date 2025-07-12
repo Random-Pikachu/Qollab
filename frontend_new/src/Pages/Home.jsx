@@ -9,7 +9,9 @@ const Home = () => {
 
   useEffect(() => {
     api.get('/questions').then((res) => {
-      setQuestions(res.data)
+      // Sort questions by createdAt descending (latest first)
+      const sortedQuestions = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setQuestions(sortedQuestions)
     })
   }, [])
   return (

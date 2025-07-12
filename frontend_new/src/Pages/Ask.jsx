@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react'
 import api from '../connection'
+import { useNavigate } from 'react-router-dom'
 // import dotenv from 'dotenv'
 // dotenv.config()
 import { useObj } from '../ObjContext';
 const Ask = () => {
 
+    const navigate = useNavigate();
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [tags, setTags] = useState([])
@@ -37,6 +39,7 @@ const Ask = () => {
         .then(res => {
             console.log(res)
         })
+        navigate('/')
     }
 
   return (
