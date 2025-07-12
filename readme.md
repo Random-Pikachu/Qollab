@@ -10,6 +10,6 @@ community.
 
 1. Sangam - ```sangampratapsingh21012006@gmail.com```
 2. Mahil - ```mahilpatel0808@gmail.com```
-3. Priyansh - ```priyansh.dev@gmail.com```
+3. Priyansh - ```priyansh.kumar.dev@gmail.com```
 4. Ansh - ```anshwww@gmail.com```
 
