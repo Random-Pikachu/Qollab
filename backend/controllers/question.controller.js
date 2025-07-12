@@ -18,3 +18,9 @@ exports.postQuestions = async (req, res) => {
     res.status(201).json(question)
 }
 
+exports.getQuestionById = async (req, res) => {
+    const { id } = req.params
+    const question = await Question.findById(id).populate('author')
+    res.status(200).json(question)
+}
+

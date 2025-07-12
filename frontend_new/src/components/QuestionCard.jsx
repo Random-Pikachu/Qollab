@@ -1,14 +1,20 @@
 import React from 'react'
 import {FaCaretUp, FaCaretDown} from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 const QuestionCard = ({question}) => {
+  const navigate = useNavigate()
   return (
     <>
-    <div className='flex items-center justify-center mb-4'>
+    <div onClick={() => navigate(`/question/${question._id}`)} className='flex items-center justify-center mb-4'>
     <div className='flex flex-row  bg-white rounded-lg shadow p-4 w-[700px] gap-5'>
         <div className='flex flex-col'>
-            <FaCaretUp/>
-            <p className='text-2xl font-bold font-poppins ml-[2px]'>{question.upvotes + question.downvotes}</p>
-            <FaCaretDown/>
+            <button className="text-gray-400 hover:text-orange-500 text-2xl font-bold focus:outline-none flex justify-center">
+                <FaCaretUp />
+            </button>
+            <p className='text-2xl font-bold font-poppins ml-[5px]'>{question.upvotes + question.downvotes}</p>
+            <button className="text-gray-400 hover:text-blue-500 text-2xl font-bold focus:outline-none flex justify-center">
+                <FaCaretDown />
+            </button>
             
         </div>
     <div className='flex flex-col w-full'>

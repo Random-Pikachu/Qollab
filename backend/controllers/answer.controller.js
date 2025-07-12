@@ -1,11 +1,12 @@
 const Question = require("../models/questions.models");
 // const Answers = require("../models/answers.models");
+const User = require("../models/User"); // or user.models.js
 
 exports.getAnswers = async (req, res) => {
   const { questionId } = req.params;
 
   try {
-    const question = await Question.findById(questionId);
+    const question = await Question.findById(questionId).populate('author');
 
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
@@ -19,17 +20,23 @@ exports.getAnswers = async (req, res) => {
 
 exports.postAnswer = async (req, res) => {
   const { questionId } = req.params;
-  const { description, author } = req.body;
+  const { description, author } = req.body; // author is username
 
   try {
-    const question = await Question.findById(questionId);
+    const question = await Question.findById(questionId).populate('author');
     if (!question) {
       return res.status(404).json({ message: "Question not found" });
     }
 
+    // Find user by username
+    const user = await User.findOne({ username: author });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     const newAnswer = {
       description,
-      author,
+      author: user._id, // Use ObjectId
       createdAt: new Date(),
       upvotes: 0,
       downvotes: 0,

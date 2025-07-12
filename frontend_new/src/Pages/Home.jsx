@@ -25,7 +25,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-          <div className='w-1/4 sticky right-0 '>
+          <div className='w-1/4 '>
               <SideBar />
           </div>
       </div>
