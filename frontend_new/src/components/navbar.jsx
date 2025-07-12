@@ -7,7 +7,7 @@ const navbar = () => {
   <div className="flex items-center gap-7 mr-10 ml-10">
     <Link to="/">Home</Link>
     <Link to="/ask">Ask</Link>
-    <Link to="/login">Login</Link>
+    <Link to="/signup">Signup</Link>
     <Link to="/profile">
       <img src="/pfp.png" alt="profile" className='w-10 h-10 rounded-full' />
     </Link>

@@ -6,10 +6,10 @@ const router = express.Router();
 
 // Register (Local)
 router.post('/register', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    const user = await User.create({ email, password: hashedPassword });
+    const user = await User.create({ email, password: hashedPassword , username});
     res.status(201).json({ message: 'User registered', user });
   } catch (err) {
     res.status(400).json({ error: err.message });

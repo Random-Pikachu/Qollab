@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react'
 import api from '../connection'
 // import dotenv from 'dotenv'
 // dotenv.config()
+import { useObj } from '../ObjContext';
 const Ask = () => {
 
     const [title, setTitle] = useState('')
@@ -11,7 +12,7 @@ const Ask = () => {
     const [tagInput, setTagInput] = useState('')
 
     // Get author from localStorage (adjust if you use context or another method)
-    const author = localStorage.getItem('userId')
+    const { obj } = useObj();
 
     const handleAddTag = () => {
         const trimmed = tagInput.trim()
@@ -20,6 +21,7 @@ const Ask = () => {
         }
         setTagInput('')
     }
+    const author = obj.user._id
 
     const handleRemoveTag = (removeTag) => {
         setTags(tags.filter(tag => tag !== removeTag))
@@ -75,7 +77,7 @@ const Ask = () => {
         </div>
         {/* Author display */}
         <div className='w-[800px] mb-4 font-poppins text-gray-600'>
-            Author: <span className='font-semibold'>{author}</span>
+            Author: <span className='font-semibold'>{obj.user.username}</span>
         </div>
         {/* Description editor */}
         <Editor

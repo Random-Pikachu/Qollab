@@ -1,6 +1,8 @@
 import React from 'react'
 import {FaCaretUp, FaCaretDown} from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { marked } from 'marked'
+const isHTML = (str) => /<[^>]+>/.test(str);
 const QuestionCard = ({question}) => {
   const navigate = useNavigate()
   return (
@@ -22,7 +24,12 @@ const QuestionCard = ({question}) => {
             <h1 className='text-2xl font-bold'>{question.title}</h1>
             <p className='text-gray-600 mr-7 text-sm'>{question.author.username}</p>
         </div>
-        <p className='text-gray-600'>{question.description}</p>
+        {/* Description rendering */}
+        {isHTML(question.description) ? (
+          <div className='text-gray-600' dangerouslySetInnerHTML={{ __html: question.description }} />
+        ) : (
+          <div className='text-gray-600' dangerouslySetInnerHTML={{ __html: marked.parse(question.description || '') }} />
+        )}
         <div className='flex flex-row gap-2'>
             {question.tags.map((tag) => (
                 <span key={tag} className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700 cursor-pointer hover:bg-gray-200">
