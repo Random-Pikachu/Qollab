@@ -5,8 +5,9 @@ const Question = require('./models/questions.models')
 const connectDb = require('./db/connectDb')
 const session = require('express-session');
 const passport = require('passport');
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth.routes');
 const questionRoutes = require('./routes/question.routes')
+const answerRoutes = require('./routes/answer.routes')
 const app = express()
 
 
@@ -32,6 +33,7 @@ dotenv.config()
 connectDb()
 
 app.use('/api/questions', questionRoutes)
+app.use('/api/answers', answerRoutes)
 
 app.get('/', (req, res) => {
     res.send('Hello World')
